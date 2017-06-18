@@ -52,7 +52,7 @@ uint8_t get_status(void)
   uint8_t ret = IDL_STA;
   uint8_t i;
   volatile uint8_t key_sta = 0;
-  if((!(RESET_PININ & _BV(RESET)))||(!(FLASH_PININ & _BV(FLASH))))
+  if((!(RESET_PININ & _BV(RESET)))&&(!(FLASH_PININ & _BV(FLASH))))
   {
     __builtin_avr_delay_cycles(TWENTY_MSEC);
     if((!(RESET_PININ & _BV(RESET)))||(!(FLASH_PININ & _BV(FLASH))))
@@ -105,6 +105,10 @@ uint8_t get_status(void)
       }
       i++;
     } while(i<10);
+  }
+  else
+  {
+      __builtin_avr_delay_cycles(TWENTY_MSEC);
   }
   return ret;
 }

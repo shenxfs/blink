@@ -6,6 +6,7 @@
 *.hex
 *.bin
 *.map
+*.DBK
 .dep/
 bin/
 doc/
