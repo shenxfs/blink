@@ -477,7 +477,8 @@ gccversion :
 program: $(OBJDIR)/$(TARGET).hex $(OBJDIR)/$(TARGET).eep
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM) $(AVRDUDE_WRITE_FUSE)
 
-
+usbasp:$(OBJDIR)/$(TARGET).hex $(OBJDIR)/$(TARGET).eep
+	$(AVRDUDE) -p$(MCU) -c usbasp -e -C /usr/local/etc/avrdude.conf -U flash:w:$(OBJDIR)/$(TARGET).hex -U eeprom:w:$(OBJDIR)/$(TARGET).eep
 # Generate avr-gdb config/init file which does the following:
 #     define the reset signal, load the target file, connect to target, and set
 #     a breakpoint at main().
@@ -632,4 +633,4 @@ $(shell mkdir $(OBJDIR) 2>/dev/null)
 # Listing of phony targets.
 .PHONY : all begin finish end sizebefore sizeafter gccversion \
 build elf hex eep lss sym coff extcoff \
-clean clean_list program debug gdb-config doc
+clean clean_list program debug gdb-config doc usbasp
