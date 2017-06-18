@@ -1,0 +1,11 @@
+*.o[a]
+*.d
+*.elf
+*.sym
+*.lss
+*.hex
+*.bin
+*.map
+.dep/
+bin/
+doc/
